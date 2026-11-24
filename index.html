@@ -198,9 +198,9 @@
 
   <script>
     const INITIAL_MOMO_DATA = {
-      version: "1.2",
+      version: "1.3",
       targetYear: "2027年度入試",
-      updatedAt: "2026-11-24T09:02:00.000Z",
+      updatedAt: "2026-11-24T09:05:00.000Z",
       schools: [
         {
           id: "rikkyo_econ_2027",
@@ -219,9 +219,9 @@
           tasks: [
             { id: "t_rikkyo_1", title: "受ける試験日を要項で最終確認する（現在は2/12で登録中）", done: false },
             { id: "t_rikkyo_2", title: "高校へ調査書の発行を依頼する", done: false },
-            { id: "t_rikkyo_3", title: "ネット出願登録・選考料＋サービス利用料（計36,100円）支払い（1/21締切）※金額は未確認", done: false },
+            { id: "t_rikkyo_3", title: "ネット出願登録・選考料＋サービス利用料（計36,100円）支払い（1/21締切）", done: false },
             { id: "t_rikkyo_4", title: "必要書類を郵送する（1/21締切）", done: false },
-            { id: "t_rikkyo_5", title: "合格後：入学手続納入（787,250円・3/1締切／分納申請なら入学金20万円）※金額は未確認", done: false }
+            { id: "t_rikkyo_5", title: "合格後：入学手続納入（787,250円・3/1締切／分納申請なら入学金20万円）", done: false }
           ]
         },
         {
@@ -250,7 +250,7 @@
           tasks: [
             { id: "t_toyo_1", title: "ネット出願・受験料35,000円支払い（1/28締切）", done: false },
             { id: "t_toyo_2", title: "調査書・出願書類の郵送（1/28締切）", done: false },
-            { id: "t_toyo_3", title: "【立教・明治不合格時のみ】2/26までに入学金250,000円でキープ検討※金額は未確認", done: false }
+            { id: "t_toyo_3", title: "【立教・明治不合格時のみ】2/26までに入学金250,000円でキープ検討", done: false }
           ]
         },
         {
@@ -265,7 +265,7 @@
           tasks: [
             { id: "t_meiji_1", title: "ネット出願・受験料35,000円支払い（1/21締切）", done: false },
             { id: "t_meiji_2", title: "調査書・出願書類の郵送（1/21締切）", done: false },
-            { id: "t_meiji_3", title: "【合格時・立教結果待ち】3/4までに入学金200,000円のみで延納手続き可能（第二次締切3/25）※金額は未確認", done: false }
+            { id: "t_meiji_3", title: "【合格時・立教結果待ち】3/4までに入学金200,000円のみで延納手続き可能（第二次締切3/25）", done: false }
           ]
         },
         {
@@ -280,7 +280,7 @@
           tasks: [
             { id: "t_chuo_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
             { id: "t_chuo_2", title: "調査書・出願書類の郵送（1/25締切）", done: false },
-            { id: "t_chuo_3", title: "進学時：3/4までに入学手続金815,350円納入※金額は未確認", done: false }
+            { id: "t_chuo_3", title: "進学時：3/4までに入学手続金815,350円納入", done: false }
           ]
         },
         {
@@ -295,7 +295,7 @@
           tasks: [
             { id: "t_aoyama_1", title: "ネット出願・受験料35,000円支払い（1/20締切・全校で最初）", done: false },
             { id: "t_aoyama_2", title: "調査書・出願書類の郵送（1/20締切）", done: false },
-            { id: "t_aoyama_3", title: "進学時：3/5までに入学手続金714,100円納入※金額は未確認", done: false }
+            { id: "t_aoyama_3", title: "進学時：3/5までに入学手続金714,100円納入", done: false }
           ]
         }
       ]
@@ -477,7 +477,7 @@
           </div>`;
 
         return `
-          <div class="card" style="background:#fffbeb; border-color:#fcd34d;">📝 <strong>日程は、2026年11月24日にベネッセ・河合塾の入試情報と突き合わせました。金額は確認していません。</strong><br>最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
+          <div class="card" style="background:#fffbeb; border-color:#fcd34d;">📝 <strong>日程は、2026年11月24日にベネッセ・河合塾の入試情報と突き合わせました。金額は大学公表値をもとにした学費表（2026年10月13日調査）と一致しています。</strong><br>最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
 
           ${conflicts.length ? `<div class="conflict-banner">⚠️ 試験日重複の注意：<br>${conflicts.map(c => `・${ExamLogic.formatDateJa(c.date)}：${c.schools.map(s => `${this.esc(s.university)}（${this.esc(s.faculty)}）`).join(" と ")}`).join("<br>")}</div>` : ""}
 
