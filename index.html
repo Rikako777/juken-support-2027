@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2027年度 大学受験サポート（ももちゃん・家族共有用）</title>
+  <style>
+    :root {
+      --base-font-size: 17px;
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-sub: #4b5563;
+      --border-color: #d1d5db;
+      --primary: #1d4ed8;
+      --danger: #b91c1c;
+      --danger-bg: #fef2f2;
+      --danger-border: #fca5a5;
+      --warning-bg: #fffbeb;
+      --warning-border: #fcd34d;
+      --radius: 14px;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    body.large-text-mode {
+      --base-font-size: 20px;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { font-size: var(--base-font-size); }
+    body {
+      margin: 0;
+      padding: 0 0 92px 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #1e3a8a;
+      color: #ffffff;
+      padding: 14px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-title { margin: 0; font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
+    .header-sub { font-size: 0.8rem; opacity: 0.9; display: block; }
+
+    .font-toggle-btn {
+      background: #ffffff;
+      color: #1e3a8a;
+      border: 2px solid #ffffff;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      min-height: 44px;
+    }
+
+    main { max-width: 820px; margin: 0 auto; padding: 16px; }
+    .section-title { font-size: 1.2rem; font-weight: 700; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px; color: #111827; }
+    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow); }
+
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; line-height: 1.3; }
+    .badge-priority-1 { background: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
+    .badge-priority-2 { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+    .badge-priority-3 { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+
+    .deadline-box { border-radius: var(--radius); padding: 16px; margin-bottom: 18px; }
+    .deadline-box.this-week { background: var(--danger-bg); border: 2px solid var(--danger-border); }
+    .deadline-box.two-weeks { background: var(--warning-bg); border: 2px solid var(--warning-border); }
+    .deadline-item { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-top: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; }
+    .deadline-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .days-left { font-size: 1.1rem; font-weight: 800; padding: 4px 12px; border-radius: 8px; }
+    .days-left.urgent { background: var(--danger); color: #ffffff; }
+    .days-left.soon { background: #d97706; color: #ffffff; }
+
+    .conflict-banner { background: #fef2f2; border: 2px solid #dc2626; color: #7f1d1d; border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px; font-weight: 700; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 16px; border-radius: 12px; font-size: 0.95rem; font-weight: 700; border: 2px solid transparent; cursor: pointer; text-decoration: none; text-align: center; line-height: 1.3; }
+    .btn-primary { background: var(--primary); color: #ffffff; }
+    .btn-outline { background: #ffffff; color: var(--primary); border-color: var(--primary); }
+    .btn-danger { background: #ffffff; color: var(--danger); border-color: var(--danger); }
+    .btn-neutral { background: #f3f4f6; color: #1f2937; border-color: #d1d5db; }
+    .btn-block { width: 100%; }
+
+    .link-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
+    @media (min-width: 600px) { .link-grid { grid-template-columns: repeat(3, 1fr); } }
+    .link-btn { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 52px; padding: 10px 12px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: 2px solid #2563eb; background: #eff6ff; color: #1e40af; }
+    .link-btn.disabled { border-color: #d1d5db; background: #f9fafb; color: #9ca3af; pointer-events: none; }
+
+    .ev-type-appStart { background: #ecfdf5; color: #065f46; border-left: 6px solid #059669; }
+    .ev-type-appEnd { background: #fef2f2; color: #991b1b; border-left: 6px solid #dc2626; font-weight: 700; }
+    .ev-type-feeDeadline { background: #fffbeb; color: #92400e; border-left: 6px solid #d97706; font-weight: 700; }
+    .ev-type-examDate { background: #eff6ff; color: #1e40af; border-left: 6px solid #2563eb; font-weight: 700; }
+    .ev-type-resultDate { background: #f5f3ff; color: #5b21b6; border-left: 6px solid #7c3aed; }
+    .ev-type-enrollmentDeadline { background: #fdf2f8; color: #9d174d; border-left: 6px solid #db2777; font-weight: 700; }
+
+
+    .task-row { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 8px; background: #ffffff; }
+    .task-row.done { background: #f3f4f6; }
+    .task-checkbox { width: 26px; height: 26px; flex-shrink: 0; cursor: pointer; }
+    .task-title { flex: 1; font-size: 1rem; }
+    .task-row.done .task-title { text-decoration: line-through; color: #6b7280; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; }
+    .form-control { width: 100%; min-height: 48px; padding: 10px 12px; font-size: 1rem; border: 2px solid #9ca3af; border-radius: 10px; background: #ffffff; color: #111827; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 600px) { .form-row-2 { grid-template-columns: 1fr 1fr; } }
+
+    .mail-preview { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-top: 10px; font-size: 0.92rem; }
+    .mail-subject { font-weight: 700; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px dashed #cbd5e1; color: #0f172a; }
+    .mail-body { white-space: pre-wrap; color: #334155; margin: 0; font-family: inherit; }
+
+    nav.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 2px solid #cbd5e1; display: grid; grid-template-columns: repeat(5, 1fr); z-index: 60; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08); }
+    .nav-item { border: none; background: none; padding: 8px 2px; min-height: 68px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #4b5563; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+    .nav-item.active { color: #1d4ed8; background: #eff6ff; border-top: 4px solid #1d4ed8; }
+    .nav-icon { font-size: 1.35rem; line-height: 1; }
+
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(17, 24, 39, 0.65); z-index: 100; display: none; align-items: flex-end; justify-content: center; }
+    .modal-backdrop.open { display: flex; }
+    @media (min-width: 640px) { .modal-backdrop.open { align-items: center; padding: 16px; } }
+    .modal-sheet { background: #ffffff; width: 100%; max-width: 760px; max-height: 92vh; overflow-y: auto; border-radius: 18px 18px 0 0; padding: 20px 16px 32px; }
+    @media (min-width: 640px) { .modal-sheet { border-radius: 18px; padding: 24px; } }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid #e5e7eb; }
+
+    .sub-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+    .sub-tab-btn { flex: 1; min-height: 46px; border-radius: 10px; border: 2px solid #cbd5e1; background: #ffffff; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
+    .sub-tab-btn.active { background: #1e3a8a; color: #ffffff; border-color: #1e3a8a; }
+    .helper-text { font-size: 0.85rem; color: var(--text-sub); margin-top: 4px; }
+
+    .cal-wrap { background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius); padding: 10px; box-shadow: var(--shadow); }
+    .cal-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+    .cal-title { font-size: 1.3rem; font-weight: 800; }
+    .cal-nav-btn { min-width: 52px; min-height: 48px; border-radius: 12px; border: 2px solid #cbd5e1; background: #ffffff; font-size: 1.1rem; font-weight: 800; cursor: pointer; }
+    .cal-today-btn { min-height: 44px; padding: 0 16px; border-radius: 12px; border: 2px solid var(--primary); background: #ffffff; color: var(--primary); font-weight: 800; cursor: pointer; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid #e5e7eb; border-left: 1px solid #e5e7eb; touch-action: pan-y; }
+    .cal-header-cell { text-align: center; font-weight: 700; padding: 6px 0; font-size: 0.8rem; border-right: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; background: #f9fafb; }
+    .cal-cell { min-height: 96px; padding: 3px 2px; border-right: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; background: #ffffff; cursor: pointer; display: flex; flex-direction: column; gap: 2px; overflow: hidden; }
+    .cal-cell.empty { background: #f9fafb; cursor: default; }
+    .cal-cell:active { background: #eff6ff; }
+    .cal-date-num { align-self: center; width: 26px; height: 26px; line-height: 26px; text-align: center; border-radius: 50%; font-size: 0.85rem; font-weight: 700; }
+    .cal-cell.sun .cal-date-num { color: #dc2626; }
+    .cal-cell.sat .cal-date-num { color: #2563eb; }
+    .cal-cell.today .cal-date-num { background: #1d4ed8; color: #ffffff; }
+    .cal-bar { font-size: 0.7rem; line-height: 1.4; padding: 1px 2px; text-align: center; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; color: #ffffff; }
+    .cal-more { font-size: 0.66rem; color: #4b5563; text-align: center; font-weight: 700; }
+    .bar-appStart { background: #047857; }
+    .bar-appEnd { background: #dc2626; }
+    .bar-feeDeadline { background: #b45309; }
+    .bar-examDate { background: #2563eb; }
+    .bar-resultDate { background: #7c3aed; }
+    .bar-enrollmentDeadline { background: #db2777; }
+    .cal-legend { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .legend-chip { font-size: 0.78rem; font-weight: 700; color: #ffffff; padding: 3px 9px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1 class="header-title">🎓 2027年度 大学受験サポート</h1>
+        <span class="header-sub">ももちゃん・母・祖母 共有アプリ</span>
+      </div>
+      <button type="button" class="font-toggle-btn" id="fontToggleBtn">文字サイズ：標準</button>
+    </div>
+  </header>
+
+  <main id="appMain"></main>
+
+  <nav class="bottom-nav">
+    <button type="button" class="nav-item active" data-tab="top"><span class="nav-icon">⏰</span><span>トップ</span></button>
+    <button type="button" class="nav-item" data-tab="calendar"><span class="nav-icon">📅</span><span>カレンダー</span></button>
+    <button type="button" class="nav-item" data-tab="schools"><span class="nav-icon">🏫</span><span>志望校・手続き</span></button>
+    <button type="button" class="nav-item" data-tab="notifications"><span class="nav-icon">✉️</span><span>通知予定</span></button>
+    <button type="button" class="nav-item" data-tab="settings"><span class="nav-icon">⚙️</span><span>設定・保存</span></button>
+  </nav>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-sheet" id="modalContent"></div>
+  </div>
+
+  <script>
+    const INITIAL_MOMO_DATA = {
+      version: "1.1",
+      targetYear: "2027年度入試",
+      updatedAt: "2026-11-24T17:25:00.000Z",
+      schools: [
+        {
+          id: "rikkyo_econ_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。試験日は2/6・8・9・12・13の中から選ぶ形のため、受ける日は要項で確認してください。",
+          university: "立教大学",
+          faculty: "経済学部（本命）",
+          examType: "一般選抜",
+          priority: "第一志望",
+          dates: { appStart: "2027-01-06", appEnd: "2027-01-21", appEndType: "消印有効", feeDeadline: "2027-01-21", examDate: "2027-02-12", resultDate: "2027-02-20", enrollmentDeadline: "2027-03-01" },
+          links: {
+            guidelineUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/mknpps0000010kwl-att/mknpps000005bupg.pdf",
+            applicationUrl: "https://www.rikkyo.ac.jp/admissions/faq/admissions01.html",
+            scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/gokaku-happyo/",
+            lastChecked: "2026-11-24"
+          },
+          tasks: [
+            { id: "t_rikkyo_1", title: "経済学部・観光学部のどちらを受けるか（日を分けて両方受けるか）を決める。試験日は2/6・8・9・12・13から選べる（要項で確認）", done: false },
+            { id: "t_rikkyo_2", title: "高校へ調査書の発行を依頼する", done: false },
+            { id: "t_rikkyo_3", title: "ネット出願登録・選考料＋サービス利用料（計36,100円）支払い（1/21締切）", done: false },
+            { id: "t_rikkyo_4", title: "必要書類を郵送する（1/21締切）", done: false },
+            { id: "t_rikkyo_5", title: "合格後：入学手続納入（787,250円・3/1締切／分納申請なら入学金20万円）", done: false }
+          ]
+        },
+        {
+          id: "rikkyo_tourism_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。試験日は2/6・8・9・12・13の中から選ぶ形のため、受ける日は要項で確認してください。",
+          university: "立教大学",
+          faculty: "観光学部（本命・経済と選択）",
+          examType: "一般選抜",
+          priority: "検討中",
+          dates: { appStart: "2027-01-06", appEnd: "2027-01-21", appEndType: "消印有効", feeDeadline: "2027-01-21", examDate: "2027-02-12", resultDate: "2027-02-20", enrollmentDeadline: "2027-03-01" },
+          links: {
+            guidelineUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/mknpps0000010kwl-att/mknpps000005bupg.pdf",
+            applicationUrl: "https://www.rikkyo.ac.jp/admissions/faq/admissions01.html",
+            scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/gokaku-happyo/",
+            lastChecked: "2026-11-24"
+          },
+          tasks: [
+            { id: "t_rikkyo_t1", title: "※経済学部と同じ2/12にしているため重複表示。日を分ければ両方受けられる可能性あり（要項で確認）。不要なら削除", done: false }
+          ]
+        },
+        {
+          id: "hosei_mgmt1_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。",
+          university: "法政大学",
+          faculty: "経営学部 経営学科",
+          examType: "一般選抜（A方式Ⅰ）",
+          priority: "併願",
+          dates: { appStart: "2027-01-07", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-07", resultDate: "2027-02-18", enrollmentDeadline: "2027-02-24" },
+          links: { guidelineUrl: "https://nyushi.hosei.ac.jp/nyushi/seido/a/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3311/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
+          tasks: [
+            { id: "t_hosei1_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
+            { id: "t_hosei1_2", title: "調査書・出願書類の郵送（1/25締切）", done: false },
+            { id: "t_hosei1_3", title: "【立教・明治不合格時のみ】2/24までに入学金240,000円でキープ検討", done: false }
+          ]
+        },
+        {
+          id: "hosei_mgmt2_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。",
+          university: "法政大学",
+          faculty: "経営学部 経営戦略学科",
+          examType: "一般選抜（A方式Ⅱ）",
+          priority: "併願",
+          dates: { appStart: "2027-01-07", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-08", resultDate: "2027-02-18", enrollmentDeadline: "2027-02-24" },
+          links: { guidelineUrl: "https://nyushi.hosei.ac.jp/nyushi/seido/a/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3311/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
+          tasks: [
+            { id: "t_hosei2_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
+            { id: "t_hosei2_2", title: "調査書・出願書類の郵送（1/25締切）", done: false }
+          ]
+        },
+        {
+          id: "hosei_econ_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。",
+          university: "法政大学",
+          faculty: "経済学部 現代ビジネス学科",
+          examType: "一般選抜（A方式Ⅰ）",
+          priority: "併願",
+          dates: { appStart: "2027-01-07", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-09", resultDate: "2027-02-19", enrollmentDeadline: "2027-02-25" },
+          links: { guidelineUrl: "https://nyushi.hosei.ac.jp/nyushi/seido/a/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3311/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
+          tasks: [
+            { id: "t_hosei3_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
+            { id: "t_hosei3_2", title: "調査書・出願書類の郵送（1/25締切）", done: false }
+          ]
+        },
+        {
+          id: "toyo_econ_2027",
+          note: "出願・発表・手続の日は、河合塾の2027年度情報と一致しました。前期の試験日は2/8〜2/11のどれかで、2/10は要確認です。",
+          university: "東洋大学",
+          faculty: "経済学部 経済学科",
+          examType: "一般選抜（前期）",
+          priority: "併願",
+          dates: { appStart: "2027-01-04", appEnd: "2027-01-28", appEndType: "消印有効", feeDeadline: "2027-01-28", examDate: "2027-02-10", resultDate: "2027-02-20", enrollmentDeadline: "2027-02-26" },
+          links: { guidelineUrl: "https://www.toyo.ac.jp/nyushi/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3297/nyushi/keizai/", lastChecked: "2026-11-24" },
+          tasks: [
+            { id: "t_toyo_1", title: "ネット出願・受験料35,000円支払い（1/28締切）", done: false },
+            { id: "t_toyo_2", title: "調査書・出願書類の郵送（1/28締切）", done: false },
+            { id: "t_toyo_3", title: "【立教・明治不合格時のみ】2/26までに入学金250,000円でキープ検討", done: false }
+          ]
+        },
+        {
+          id: "meiji_pol_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。",
+          university: "明治大学",
+          faculty: "政治経済学部",
+          examType: "一般選抜（学部別）",
+          priority: "併願",
+          dates: { appStart: "2027-01-07", appEnd: "2027-01-21", appEndType: "消印有効", feeDeadline: "2027-01-21", examDate: "2027-02-11", resultDate: "2027-02-18", enrollmentDeadline: "2027-03-04" },
+          links: { guidelineUrl: "https://www.meiji.ac.jp/koho/guidebook/univ/guide2027_11admission.pdf", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3318/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
+          tasks: [
+            { id: "t_meiji_1", title: "ネット出願・受験料35,000円支払い（1/21締切）", done: false },
+            { id: "t_meiji_2", title: "調査書・出願書類の郵送（1/21締切）", done: false },
+            { id: "t_meiji_3", title: "【合格時・立教結果待ち】3/4までに入学金200,000円のみで延納手続き可能（第二次締切3/25）", done: false }
+          ]
+        },
+        {
+          id: "chuo_econ_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。学部別Ⅰは2/14、Ⅱは2/15で、このデータはⅡです。",
+          university: "中央大学",
+          faculty: "経済学部",
+          examType: "一般選抜（学部別Ⅱ）",
+          priority: "併願",
+          dates: { appStart: "2027-01-06", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-15", resultDate: "2027-02-25", enrollmentDeadline: "2027-03-04" },
+          links: { guidelineUrl: "https://www.chuo-u.ac.jp/connect/admission/modification/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3275/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
+          tasks: [
+            { id: "t_chuo_0", title: "学部別Ⅰ（2/14）とⅡ（2/15）のどちらを受けるか決める（2出願目以降の検定料は15,000円）", done: false },
+            { id: "t_chuo_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
+            { id: "t_chuo_2", title: "調査書・出願書類の郵送（1/25締切）", done: false },
+            { id: "t_chuo_3", title: "進学時：3/4までに入学手続金815,350円納入", done: false }
+          ]
+        },
+        {
+          id: "aoyama_econ_2027",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。",
+          university: "青山学院大学",
+          faculty: "経済学部",
+          examType: "一般選抜（個別学部日程）",
+          priority: "併願",
+          dates: { appStart: "2027-01-06", appEnd: "2027-01-20", appEndType: "消印有効", feeDeadline: "2027-01-20", examDate: "2027-02-19", resultDate: "2027-02-27", enrollmentDeadline: "2027-03-05" },
+          links: { guidelineUrl: "https://www.aoyama.ac.jp/wp-content/uploads/2026/05/ad_exam2027_p149_20260507_k3w1A.pdf", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3231/nyushi/keizai/", lastChecked: "2026-11-24" },
+          tasks: [
+            { id: "t_aoyama_1", title: "ネット出願・受験料35,000円支払い（1/20締切・全校で最初）", done: false },
+            { id: "t_aoyama_2", title: "調査書・出願書類の郵送（1/20締切）", done: false },
+            { id: "t_aoyama_3", title: "進学時：3/5までに入学手続金714,100円納入", done: false }
+          ]
+        }
+      ]
+    };
+
+    const StorageRepository = {
+      STORAGE_KEY: "momo_exam_support_2027_v2",
+      PREF_KEY: "momo_exam_support_2027_prefs",
+      loadData() {
+        try {
+          const raw = localStorage.getItem(this.STORAGE_KEY);
+          if (!raw) {
+            this.saveData(INITIAL_MOMO_DATA);
+            return JSON.parse(JSON.stringify(INITIAL_MOMO_DATA));
+          }
+          return JSON.parse(raw);
+        } catch {
+          return JSON.parse(JSON.stringify(INITIAL_MOMO_DATA));
+        }
+      },
+      saveData(data) {
+        data.updatedAt = new Date().toISOString();
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+      },
+      loadPrefs() {
+        try { return JSON.parse(localStorage.getItem(this.PREF_KEY)) || { largeText: false }; } catch { return { largeText: false }; }
+      },
+      savePrefs(prefs) {
+        localStorage.setItem(this.PREF_KEY, JSON.stringify(prefs));
+      }
+    };
+
+    const ExamLogic = {
+      EVENT_META: {
+        appStart: { label: "出願開始", icon: "🟢" },
+        appEnd: { label: "出願締切", icon: "🚨" },
+        feeDeadline: { label: "受験料振込期限", icon: "💴" },
+        examDate: { label: "試験日", icon: "✏️" },
+        resultDate: { label: "合格発表日", icon: "🌸" },
+        enrollmentDeadline: { label: "入学手続き締切", icon: "🏫" }
+      },
+      parseLocalDate(dateStr) {
+        if (!dateStr) return null;
+        const [y, m, d] = dateStr.split("-").map(Number);
+        return (!y || !m || !d) ? null : new Date(y, m - 1, d);
+      },
+      todayStr() {
+        const n = new Date();
+        return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}-${String(n.getDate()).padStart(2, "0")}`;
+      },
+      shortUniv(u) {
+        return String(u || "").replace("青山学院", "青学").replace("大学", "");
+      },
+      diffDaysFromToday(dateStr) {
+        const target = this.parseLocalDate(dateStr);
+        if (!target) return null;
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        return Math.round((target - today) / (1000 * 60 * 60 * 24));
+      },
+      formatDateJa(dateStr) {
+        const d = this.parseLocalDate(dateStr);
+        if (!d) return "未設定";
+        const weeks = ["日", "月", "火", "水", "木", "金", "土"];
+        return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日（${weeks[d.getDay()]}）`; }, getAllEvents(schools) { const events = []; schools.forEach((school) => { Object.keys(this.EVENT_META).forEach((key) => { const dateStr = school.dates?.[key]; if (!dateStr) return; if (key === "feeDeadline" && dateStr === school.dates?.appEnd) return; const meta = this.EVENT_META[key]; const extraNote = (key === "appEnd" && school.dates.appEndType) ? `（${school.dates.appEndType}）` : "";
+            events.push({
+              schoolId: school.id, university: school.university, faculty: school.faculty,
+              examType: school.examType, priority: school.priority, typeKey: key,
+              typeLabel: (key === "appEnd" && school.dates?.feeDeadline === school.dates?.appEnd) ? "出願締切・受験料" : meta.label, icon: meta.icon, date: dateStr, extraNote,
+              daysLeft: this.diffDaysFromToday(dateStr)
+            });
+          });
+        });
+        return events.sort((a, b) => a.date.localeCompare(b.date));
+      },
+      findExamConflicts(schools) {
+        const byDate = {};
+        schools.forEach((s) => {
+          const d = s.dates?.examDate;
+          if (!d) return;
+          if (!byDate[d]) byDate[d] = [];
+          byDate[d].push(s);
+        });
+        return Object.entries(byDate).filter(([, list]) => list.length >= 2).map(([date, list]) => ({ date, schools: list })).sort((a, b) => a.date.localeCompare(b.date));
+      },
+      generateNotificationPreviews(schools) {
+        const timings = [{ offsetDays: -7, label: "7日前" }, { offsetDays: -3, label: "3日前" }, { offsetDays: -1, label: "前日" }, { offsetDays: 0, label: "当日朝" }];
+        const targetKeys = ["appEnd", "feeDeadline", "enrollmentDeadline"];
+        const list = [];
+        schools.forEach((school) => {
+          targetKeys.forEach((key) => {
+            const deadlineStr = school.dates?.[key];
+            const deadlineDate = this.parseLocalDate(deadlineStr);
+            if (!deadlineDate) return;
+            if (key === "feeDeadline" && deadlineStr === school.dates?.appEnd) return;
+            const meta = this.EVENT_META[key];
+            const methodNote = ((key === "appEnd" && school.dates.appEndType) ? `（${school.dates.appEndType}）` : "") + ((key === "appEnd" && school.dates.feeDeadline === school.dates.appEnd) ? "\n■ 受験料の振込期限：同じ日です" : ""); timings.forEach((t) => { const sendObj = new Date(deadlineDate.getFullYear(), deadlineDate.getMonth(), deadlineDate.getDate() + t.offsetDays); const sendDate = `${sendObj.getFullYear()}-${String(sendObj.getMonth() + 1).padStart(2, "0")}-${String(sendObj.getDate()).padStart(2, "0")}`;
+              const remText = t.offsetDays === 0 ? "本日が締切です" : `まであと${Math.abs(t.offsetDays)}日`; list.push({ sendDate, timingLabel: t.label, school, typeLabel: meta.label, subject: `【${school.university} ${school.faculty}】${meta.label}${remText}`, body: `ももちゃん・お母様・おばあ様へ\n\n「${school.university} ${school.faculty}（${school.examType}）」の${meta.label}${remText}。\n\n■ 締切日：${this.formatDateJa(deadlineStr)}${methodNote}\n■ 募集要項リンク：${school.links?.guidelineUrl || "（未登録）"}\n■ 出願サイトリンク：${school.links?.applicationUrl || "（未登録）"}`
+              });
+            });
+          });
+        });
+        return list.sort((a, b) => a.sendDate.localeCompare(b.sendDate));
+      }
+    };
+
+    const App = {
+      state: {
+        data: StorageRepository.loadData(),
+        prefs: StorageRepository.loadPrefs(),
+        activeTab: "top",
+        calendarMode: "month",
+        calendarMonth: new Date()
+      },
+      initialMonth() {
+        const events = ExamLogic.getAllEvents(this.state.data.schools);
+        const next = events.find((e) => e.daysLeft !== null && e.daysLeft >= 0);
+        const base = next ? ExamLogic.parseLocalDate(next.date) : new Date();
+        return new Date(base.getFullYear(), base.getMonth(), 1);
+      },
+      shiftMonth(delta) {
+        const c = this.state.calendarMonth;
+        this.state.calendarMonth = new Date(c.getFullYear(), c.getMonth() + delta, 1);
+        this.render();
+      },
+      init() {
+        this.state.calendarMonth = this.initialMonth();
+        this.applyFont();
+        document.getElementById("fontToggleBtn").addEventListener("click", () => {
+          this.state.prefs.largeText = !this.state.prefs.largeText;
+          StorageRepository.savePrefs(this.state.prefs);
+          this.applyFont();
+        });
+        document.querySelectorAll(".nav-item").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            this.state.activeTab = btn.dataset.tab;
+            this.render();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        });
+        document.getElementById("modalBackdrop").addEventListener("click", (e) => {
+          if (e.target.id === "modalBackdrop") this.closeModal();
+        });
+        this.render();
+      },
+      applyFont() {
+        document.body.classList.toggle("large-text-mode", this.state.prefs.largeText);
+        document.getElementById("fontToggleBtn").textContent = this.state.prefs.largeText ? "文字サイズ：特大" : "文字サイズ：標準";
+      },
+      esc(s) {
+        return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      },
+      render() {
+        document.querySelectorAll(".nav-item").forEach((b) => b.classList.toggle("active", b.dataset.tab === this.state.activeTab));
+        const main = document.getElementById("appMain");
+        if (this.state.activeTab === "top") main.innerHTML = this.renderTop();
+        else if (this.state.activeTab === "calendar") main.innerHTML = this.renderCalendar();
+        else if (this.state.activeTab === "schools") main.innerHTML = this.renderSchools();
+        else if (this.state.activeTab === "notifications") main.innerHTML = this.renderNotifications();
+        else main.innerHTML = this.renderSettings();
+        this.bindEvents();
+      },
+      renderTop() {
+        const schools = this.state.data.schools;
+        const events = ExamLogic.getAllEvents(schools);
+        const conflicts = ExamLogic.findExamConflicts(schools);
+        const thisWeek = events.filter((e) => e.daysLeft !== null && e.daysLeft >= 0 && e.daysLeft <= 7);
+        const twoWeeks = events.filter((e) => e.daysLeft !== null && e.daysLeft >= 8 && e.daysLeft <= 14);
+        const nextDeadlines = events.filter((e) => e.daysLeft !== null && e.daysLeft >= 0 && ["appEnd", "feeDeadline", "enrollmentDeadline"].includes(e.typeKey)).slice(0, 4);
+
+        const cardItem = (ev, cls) => `
+          <div class="deadline-item" data-open="${this.esc(ev.schoolId)}">
+            <div class="deadline-top">
+              <span class="days-left ${cls}">${ev.daysLeft === 0 ? "本日！" : `あと ${ev.daysLeft} 日`}</span>
+              <span class="badge badge-priority-3">${ev.icon} ${this.esc(ev.typeLabel)}${this.esc(ev.extraNote)}</span>
+            </div>
+            <div style="font-size:1.1rem; font-weight:800;">${this.esc(ev.university)}${this.esc(ev.faculty)}</div>
+            <div style="font-size:0.95rem;">日付：<strong>${ExamLogic.formatDateJa(ev.date)}</strong></div>
+          </div>`;
+
+        return `
+          <div class="card" style="background:#fffbeb; border-color:#fcd34d;">📝 <strong>日程は、2026年11月24日にベネッセ・河合塾の入試情報と突き合わせました。金額は確認していません。</strong><br>最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
+
+          ${conflicts.length ? `<div class="conflict-banner">⚠️ 試験日重複の注意：<br>${conflicts.map(c => `・${ExamLogic.formatDateJa(c.date)}：${c.schools.map(s => `${this.esc(s.university)}（${this.esc(s.faculty)}）`).join(" と ")}`).join("<br>")}</div>` : ""}
+
+          <section class="deadline-box this-week">
+            <h2 class="section-title" style="color:#991b1b;">🚨 今週の期限（今日〜7日以内）</h2>
+            ${thisWeek.length ? thisWeek.map(e => cardItem(e, "urgent")).join("") : `<p style="margin:0;font-weight:700;">今週（7日以内）の期限はありません。${nextDeadlines[0] ? `次の期限は ${ExamLogic.formatDateJa(nextDeadlines[0].date)}（${this.esc(nextDeadlines[0].university)} ${this.esc(nextDeadlines[0].typeLabel)}）です。` : ""}</p>`}
+          </section>
+
+          <section class="deadline-box two-weeks">
+            <h2 class="section-title" style="color:#92400e;">⏳ 2週間以内の期限（8日〜14日後）</h2>
+            ${twoWeeks.length ? twoWeeks.map(e => cardItem(e, "soon")).join("") : `<p style="margin:0;font-weight:700;">8日〜14日後の予定はありません。</p>`}
+          </section>
+
+          <section class="card">
+            <h2 class="section-title">📌 直近の主な締切スケジュール</h2>
+            ${nextDeadlines.map(e => cardItem(e, "soon")).join("")}
+          </section>
+
+          <section class="card">
+            <h2 class="section-title">🏫 志望校一覧（${schools.length}枠）</h2>
+            ${schools.map(s => {
+              const done = s.tasks.filter(t => t.done).length;
+              return `
+                <div class="deadline-item" data-open="${this.esc(s.id)}">
+                  <div class="deadline-top">
+                    <strong style="font-size:1.05rem;">${this.esc(s.university)} ${this.esc(s.faculty)}</strong>
+                    <span class="badge ${s.priority === "第一志望" ? "badge-priority-1" : "badge-priority-2"}">${this.esc(s.priority)}</span>
+                  </div>
+                  <div style="font-size:0.9rem; color:#4b5563;">手続き：<strong>${done}/${s.tasks.length}</strong> 完了 ／ 試験日：<strong>${ExamLogic.formatDateJa(s.dates?.examDate)}</strong></div>
+                </div>`;
+            }).join("")}
+          </section>`;
+      },
+      renderCalendar() {
+        const schools = this.state.data.schools;
+        const events = ExamLogic.getAllEvents(schools);
+        const modeTabs = `
+          <div class="sub-tabs">
+            <button type="button" class="sub-tab-btn ${this.state.calendarMode === "month" ? "active" : ""}" data-cal-mode="month">🗓️ 月カレンダー</button>
+            <button type="button" class="sub-tab-btn ${this.state.calendarMode === "list" ? "active" : ""}" data-cal-mode="list">📋 リストで見る</button>
+          </div>`;
+
+        if (this.state.calendarMode === "list") {
+          return `
+            <h2 class="section-title">📋 2027年度 受験スケジュール一覧</h2>
+            ${modeTabs}${events.map(ev => `
+              <div class="card ev-type-${ev.typeKey}" style="cursor:pointer; margin-bottom:10px;" data-open="${this.esc(ev.schoolId)}">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                  <strong>${ExamLogic.formatDateJa(ev.date)}</strong>
+                  <span class="badge badge-priority-2">${ev.daysLeft < 0 ? "終了" : ev.daysLeft === 0 ? "本日" : `あと${ev.daysLeft}日`}</span>
+                </div>
+                <div style="margin-top:4px;">${ev.icon} <strong>${this.esc(ev.typeLabel)}${this.esc(ev.extraNote)}</strong></div>
+                <div>${this.esc(ev.university)} ${this.esc(ev.faculty)}（${this.esc(ev.examType)}）</div>
+              </div>`).join("")}`;
+        }
+
+        const y = this.state.calendarMonth.getFullYear();
+        const m = this.state.calendarMonth.getMonth();
+        const monthKey = `${y}-${String(m + 1).padStart(2, "0")}`;
+        const startWeekday = new Date(y, m, 1).getDay();
+        const daysInMonth = new Date(y, m + 1, 0).getDate();
+        const todayStr = ExamLogic.todayStr();
+        const byDate = {};
+        events.forEach(ev => { (byDate[ev.date] = byDate[ev.date] || []).push(ev); });
+
+        let cells = ["日", "月", "火", "水", "木", "金", "土"].map((w, i) => `<div class="cal-header-cell" style="color:${i === 0 ? "#dc2626" : i === 6 ? "#2563eb" : "#374151"}">${w}</div>`).join("");
+        for (let i = 0; i < startWeekday; i++) cells += `<div class="cal-cell empty"></div>`;
+        for (let d = 1; d <= daysInMonth; d++) {
+          const ds = `${monthKey}-${String(d).padStart(2, "0")}`;
+          const wd = (startWeekday + d - 1) % 7;
+          const dayEvents = byDate[ds] || [];
+          const groups = [];
+          dayEvents.forEach(ev => {
+            const key = ev.university + "|" + ev.typeKey;
+            let g = groups.find(x => x.key === key);
+            if (!g) { g = { key, ev, n: 0 }; groups.push(g); }
+            g.n += 1;
+          });
+          const bars = groups.slice(0, 3).map(g => `<div class="cal-bar bar-${g.ev.typeKey}">${this.esc(ExamLogic.shortUniv(g.ev.university))}${g.n > 1 ? "×" + g.n : ""}</div>`).join("");
+          const more = groups.length > 3 ? `<div class="cal-more">ほか${groups.length - 3}件</div>` : "";
+          const cls = [ds === todayStr ? "today" : "", wd === 0 ? "sun" : "", wd === 6 ? "sat" : ""].join(" ");
+          cells += `<div class="cal-cell ${cls}" data-day="${ds}" role="button" aria-label="${m + 1}月${d}日 予定${dayEvents.length}件"><div class="cal-date-num">${d}</div>${bars}${more}</div>`;
+        }
+        const filled = startWeekday + daysInMonth;
+        for (let i = 0; i < (7 - (filled % 7)) % 7; i++) cells += `<div class="cal-cell empty"></div>`;
+
+        const monthCount = events.filter(ev => ev.date.startsWith(monthKey)).length;
+        const legend = Object.keys(ExamLogic.EVENT_META).map(k => `<span class="legend-chip bar-${k}">${ExamLogic.EVENT_META[k].icon} ${ExamLogic.EVENT_META[k].label}</span>`).join("");
+
+        return `
+          <h2 class="section-title">🗓️ 受験カレンダー</h2>
+          ${modeTabs}
+          <div class="cal-wrap">
+            <div class="cal-controls">
+              <button type="button" class="cal-nav-btn" id="prevMonthBtn" aria-label="前の月">◀</button>
+              <div style="text-align:center;">
+                <div class="cal-title">${y}年${m + 1}月</div>
+                <div class="helper-text" style="margin:0;">この月の予定：${monthCount}件</div>
+              </div>
+              <button type="button" class="cal-nav-btn" id="nextMonthBtn" aria-label="次の月">▶</button>
+            </div>
+            <div style="display:flex; justify-content:center; margin-bottom:10px;"><button type="button" class="cal-today-btn" id="todayMonthBtn">今日の月にもどる</button></div>
+            <div class="cal-grid" id="calSwipe">${cells}</div>
+            <div class="cal-legend">${legend}</div>
+            <div class="helper-text" style="margin-top:8px;">日付をタップすると、その日の予定が見られます。画面を左右になぞると月が変わります。</div>
+          </div>`;
+      },
+      renderSchools() {
+        return `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <h2 class="section-title" style="margin:0;">🏫 志望校・募集要項・手続き</h2>
+            <button type="button" class="btn btn-primary" id="addSchoolBtn">＋ 追加</button>
+          </div>
+          ${this.state.data.schools.map(s => {
+            const done = s.tasks.filter(t => t.done).length;
+            const gUrl = s.links?.guidelineUrl?.trim();
+            const aUrl = s.links?.applicationUrl?.trim();
+            const sUrl = s.links?.scheduleUrl?.trim();
+            return `
+              <div class="card">
+                <div style="margin-bottom:6px;">
+                  <span class="badge ${s.priority === "第一志望" ? "badge-priority-1" : "badge-priority-2"}">${this.esc(s.priority)}</span>
+                  <span class="badge badge-priority-3">2027年度入試</span>
+                </div>
+                <h3 style="margin:0; font-size:1.25rem;">${this.esc(s.university)} ${this.esc(s.faculty)}</h3>
+                <div style="color:#4b5563; font-weight:700;">${this.esc(s.examType)}</div>
+                ${s.note ? `<div class="helper-text" style="margin-top:6px;">📝 ${this.esc(s.note)}</div>` : ""}
+                <div style="background:#f8fafc; border-radius:10px; padding:10px; margin-top:10px; font-size:0.92rem;">
+                  <div>🚨 出願締切：<strong>${ExamLogic.formatDateJa(s.dates?.appEnd)}</strong>（${this.esc(s.dates?.appEndType || "消印有効")}）</div>
+                  <div>✏️ 試験日：<strong>${ExamLogic.formatDateJa(s.dates?.examDate)}</strong></div>
+                  <div>🌸 合格発表：<strong>${ExamLogic.formatDateJa(s.dates?.resultDate)}</strong> ／ 🏫 手続締切：<strong>${ExamLogic.formatDateJa(s.dates?.enrollmentDeadline)}</strong></div>
+                </div>
+                <div class="link-grid">
+                  <a href="${gUrl || "#"}" target="_blank" rel="noopener noreferrer" class="link-btn ${gUrl ? "" : "disabled"}">📖 募集要項${gUrl ? "" : "（未登録）"}</a>
+                  <a href="${aUrl || "#"}" target="_blank" rel="noopener noreferrer" class="link-btn ${aUrl ? "" : "disabled"}">💻 出願サイト${aUrl ? "" : "（未登録）"}</a>
+                  <a href="${sUrl || "#"}" target="_blank" rel="noopener noreferrer" class="link-btn ${sUrl ? "" : "disabled"}">📅 入試日程ページ${sUrl ? "" : "（未登録）"}</a>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px solid #e5e7eb; flex-wrap:wrap; gap:8px;">
+                  <strong style="color:#047857;">✅ 手続き：${done}/${s.tasks.length} 完了</strong>
+                  <div style="display:flex; gap:8px;">
+                    <button type="button" class="btn btn-primary" data-open="${this.esc(s.id)}">📋 手続き・詳細</button>
+                    <button type="button" class="btn btn-outline" data-edit="${this.esc(s.id)}">✏️ 編集</button>
+                  </div>
+                </div>
+              </div>`;
+          }).join("")}`;
+      },
+      renderNotifications() {
+        const now = new Date();
+        const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+        const previews = ExamLogic.generateNotificationPreviews(this.state.data.schools).filter((p) => p.sendDate >= todayStr);
+        return `
+          <h2 class="section-title">✉️ 通知メール予定一覧（プレビュー）</h2>
+          <p class="helper-text" style="margin:-4px 0 12px;">今日以降に送る予定のものだけを表示しています。実際のメール送信は、まだ設定していません。</p>
+          ${previews.map(p => `
+            <div class="card">
+              <div>
+                <span class="badge badge-priority-2">予定日：${ExamLogic.formatDateJa(p.sendDate)}</span>
+                <span class="badge badge-priority-1">${this.esc(p.timingLabel)}</span>
+              </div>
+              <div class="mail-preview">
+                <div class="mail-subject">件名：${this.esc(p.subject)}</div>
+                <pre class="mail-body">${this.esc(p.body)}</pre>
+              </div>
+            </div>`).join("")}`;
+      },
+      renderSettings() {
+        return `
+          <h2 class="section-title">⚙️ 設定・データの保存</h2>
+          <div class="card">
+            <h3 style="margin-top:0;">👀 文字サイズの切り替え（おばあちゃん向け）</h3>
+            <button type="button" class="btn btn-outline btn-block" id="settingsFontBtn">文字サイズを切り替える（現在：${this.state.prefs.largeText ? "特大" : "標準"}）</button>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0;">📤 JSONで書き出し・読み込み</h3>
+            <button type="button" class="btn btn-primary btn-block" id="exportJsonBtn" style="margin-bottom:12px;">💾 データをJSONで書き出す</button>
+            <input type="file" id="importJsonInput" accept=".json,application/json" class="form-control" />
+          </div>`;
+      },
+      linkGridHtml(s) {
+        const gUrl = s.links?.guidelineUrl?.trim();
+        const aUrl = s.links?.applicationUrl?.trim();
+        const sUrl = s.links?.scheduleUrl?.trim();
+        return `
+          <div class="link-grid">
+            <a href="${this.esc(gUrl || "#")}" target="_blank" rel="noopener noreferrer" class="link-btn ${gUrl ? "" : "disabled"}">📖 募集要項${gUrl ? "" : "（未登録）"}</a>
+            <a href="${this.esc(aUrl || "#")}" target="_blank" rel="noopener noreferrer" class="link-btn ${aUrl ? "" : "disabled"}">💻 出願サイト${aUrl ? "" : "（未登録）"}</a>
+            <a href="${this.esc(sUrl || "#")}" target="_blank" rel="noopener noreferrer" class="link-btn ${sUrl ? "" : "disabled"}">📅 入試日程ページ${sUrl ? "" : "（未登録）"}</a>
+          </div>
+          <div class="helper-text" style="margin:6px 0 14px;">2027年度入試 ／ リンクを確認した日：${this.esc(s.links?.lastChecked || "未確認")}</div>`;
+      },
+      openDayModal(ds) {
+        const events = ExamLogic.getAllEvents(this.state.data.schools).filter((e) => e.date === ds);
+        const dl = ExamLogic.diffDaysFromToday(ds);
+        const dlText = dl === null ? "" : dl < 0 ? "終了しました" : dl === 0 ? "今日です" : `あと ${dl} 日`;
+        const modal = document.getElementById("modalContent");
+        modal.innerHTML = `
+          <div class="modal-header">
+            <div>
+              <h2 style="margin:0; font-size:1.25rem;">📅 ${ExamLogic.formatDateJa(ds)}</h2>
+              <div style="color:#4b5563; font-weight:700;">${dlText}</div>
+            </div>
+            <button type="button" class="btn btn-neutral" id="closeModalBtn">✕ 閉じる</button>
+          </div>
+          ${events.length ? events.map((ev) => `
+            <div class="card ev-type-${ev.typeKey}" style="margin-bottom:12px;">
+              <div style="font-size:1.15rem; font-weight:800;">${ev.icon} ${this.esc(ev.typeLabel)}${this.esc(ev.extraNote)}</div>
+              <div style="margin-top:4px; font-weight:700;">${this.esc(ev.university)} ${this.esc(ev.faculty)}</div>
+              <div style="font-size:0.9rem;">${this.esc(ev.examType)}</div>
+              <button type="button" class="btn btn-primary btn-block" style="margin-top:10px;" data-day-open="${this.esc(ev.schoolId)}">📋 募集要項・手続きを見る</button>
+            </div>`).join("") : `<p style="font-weight:700;">この日の予定はありません。</p>`}`;
+        document.getElementById("modalBackdrop").classList.add("open");
+        document.getElementById("closeModalBtn").addEventListener("click", () => this.closeModal());
+        modal.querySelectorAll("[data-day-open]").forEach((btn) => btn.addEventListener("click", () => this.openDetailModal(btn.dataset.dayOpen)));
+      },
+      openDetailModal(id) {
+        const s = this.state.data.schools.find(x => x.id === id);
+        if (!s) return;
+        const done = s.tasks.filter(t => t.done).length;
+        const modal = document.getElementById("modalContent");
+        modal.innerHTML = `
+          <div class="modal-header">
+            <div>
+              <h2 style="margin:0; font-size:1.25rem;">${this.esc(s.university)}${this.esc(s.faculty)}</h2>
+              <div style="color:#4b5563;">${this.esc(s.examType)}</div>
+            </div>
+            <button type="button" class="btn btn-neutral" id="closeModalBtn">✕ 閉じる</button>
+          </div>
+          ${this.linkGridHtml(s)}
+          ${s.note ? `<div class="helper-text" style="margin:-6px 0 14px;">📝 ${this.esc(s.note)}</div>` : ""}
+          <h3 style="margin:0 0 10px;">✅ 手続きチェックリスト（${done}/${s.tasks.length} 完了）</h3>
+          ${s.tasks.map(t => `
+            <div class="task-row ${t.done ? "done" : ""}">
+              <input type="checkbox" class="task-checkbox" data-toggle-task="${this.esc(t.id)}" ${t.done ? "checked" : ""} />
+              <span class="task-title">${this.esc(t.title)}</span>
+              <button type="button" class="btn btn-danger" style="min-height:40px; padding:6px 10px;" data-del-task="${this.esc(t.id)}">削除</button>
+            </div>`).join("")}
+          <div style="display:flex; gap:8px; margin-top:12px;">
+            <input type="text" id="newTaskInput" class="form-control" placeholder="新しい手続きを追加" />
+            <button type="button" class="btn btn-primary" id="addTaskBtn">＋ 追加</button>
+          </div>
+          <div style="display:flex; gap:8px; margin-top:18px;">
+            <button type="button" class="btn btn-outline" style="flex:1;" id="modalEditBtn">✏️ 日程・URLを編集</button>
+            <button type="button" class="btn btn-danger" id="modalDelBtn">🗑️ 削除</button>
+          </div>`;
+        document.getElementById("modalBackdrop").classList.add("open");
+        document.getElementById("closeModalBtn").addEventListener("click", () => this.closeModal());
+        document.querySelectorAll("[data-toggle-task]").forEach(cb => cb.addEventListener("change", () => {
+          const t = s.tasks.find(x => x.id === cb.dataset.toggleTask);
+          if (t) { t.done = cb.checked; StorageRepository.saveData(this.state.data); this.openDetailModal(s.id); this.render(); }
+        }));
+        document.getElementById("addTaskBtn").addEventListener("click", () => {
+          const val = document.getElementById("newTaskInput").value.trim();
+          if (!val) return;
+          s.tasks.push({ id: "t_" + Date.now(), title: val, done: false });
+          StorageRepository.saveData(this.state.data);
+          this.openDetailModal(s.id);
+          this.render();
+        });
+        document.querySelectorAll("[data-del-task]").forEach(btn => btn.addEventListener("click", () => {
+          s.tasks = s.tasks.filter(x => x.id !== btn.dataset.delTask);
+          StorageRepository.saveData(this.state.data);
+          this.openDetailModal(s.id);
+          this.render();
+        }));
+        document.getElementById("modalEditBtn").addEventListener("click", () => this.openFormModal(s.id));
+        document.getElementById("modalDelBtn").addEventListener("click", () => {
+          if (!confirm(`「${s.university}${s.faculty}」を削除しますか？`)) return;
+          this.state.data.schools = this.state.data.schools.filter(x => x.id !== s.id);
+          StorageRepository.saveData(this.state.data);
+          this.closeModal();
+          this.render();
+        });
+      },
+      openFormModal(id = null) {
+        const isEdit = Boolean(id);
+        const s = isEdit ? this.state.data.schools.find(x => x.id === id) : {
+          id: "school_" + Date.now(), university: "", faculty: "", examType: "一般選抜", priority: "併願",
+          dates: { appStart: "", appEnd: "", appEndType: "消印有効", feeDeadline: "", examDate: "", resultDate: "", enrollmentDeadline: "" },
+          links: { guidelineUrl: "", applicationUrl: "", scheduleUrl: "", lastChecked: "2026-11-24" },
+          tasks: [{ id: "t_" + Date.now(), title: "高校へ調査書の発行を依頼する", done: false }]
+        };
+        const modal = document.getElementById("modalContent");
+        modal.innerHTML = `
+          <div class="modal-header">
+            <h2 style="margin:0;">${isEdit ? "✏️ 志望校の編集" : "＋ 志望校の追加"}</h2>
+            <button type="button" class="btn btn-neutral" id="closeModalBtn">✕ 閉じる</button>
+          </div>
+          <form id="schoolForm">
+            <div class="form-row-2">
+              <div class="form-group"><label class="form-label">大学名</label><input type="text" id="f_u" class="form-control" required value="${this.esc(s.university)}" /></div>
+              <div class="form-group"><label class="form-label">学部・学科</label><input type="text" id="f_f" class="form-control" required value="${this.esc(s.faculty)}" /></div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group"><label class="form-label">入試方式</label><input type="text" id="f_e" class="form-control" value="${this.esc(s.examType)}" /></div>
+              <div class="form-group"><label class="form-label">志望度</label>
+                <select id="f_p" class="form-control">
+                  ${["第一志望", "併願", "検討中"].map(p => `<option value="${p}" ${s.priority === p ? "selected" : ""}>${p}</option>`).join("")}
+                </select>
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group"><label class="form-label">出願締切</label><input type="date" id="f_ae" class="form-control" value="${this.esc(s.dates?.appEnd || "")}" /></div>
+              <div class="form-group"><label class="form-label">締切扱い</label>
+                <select id="f_aet" class="form-control">
+                  <option value="消印有効" ${s.dates?.appEndType === "消印有効" ? "selected" : ""}>消印有効</option>
+                  <option value="必着" ${s.dates?.appEndType === "必着" ? "selected" : ""}>必着</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group"><label class="form-label">試験日</label><input type="date" id="f_ex" class="form-control" value="${this.esc(s.dates?.examDate || "")}" /></div>
+              <div class="form-group"><label class="form-label">合格発表日</label><input type="date" id="f_rs" class="form-control" value="${this.esc(s.dates?.resultDate || "")}" /></div>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group"><label class="form-label">受験料の振込期限</label><input type="date" id="f_fee" class="form-control" value="${this.esc(s.dates?.feeDeadline || "")}" /></div>
+              <div class="form-group"><label class="form-label">入学手続き締切</label><input type="date" id="f_en" class="form-control" value="${this.esc(s.dates?.enrollmentDeadline || "")}" /></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">出願開始日（分かれば）</label>
+              <input type="date" id="f_as" class="form-control" value="${this.esc(s.dates?.appStart || "")}" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">📖 募集要項のURL</label>
+              <input type="url" id="f_gu" class="form-control" placeholder="https://" value="${this.esc(s.links?.guidelineUrl || "")}" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">💻 出願サイトのURL</label>
+              <input type="url" id="f_au" class="form-control" placeholder="https://" value="${this.esc(s.links?.applicationUrl || "")}" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">📅 入試日程ページのURL</label>
+              <input type="url" id="f_su" class="form-control" placeholder="https://" value="${this.esc(s.links?.scheduleUrl || "")}" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">リンクを最後に確認した日</label>
+              <input type="date" id="f_lc" class="form-control" value="${this.esc(s.links?.lastChecked || "")}" />
+              <div class="helper-text">年度の古い募集要項を見ないよう、確認した日を残しておきます。</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">💾 保存する</button>
+          </form>`;
+        document.getElementById("modalBackdrop").classList.add("open");
+        document.getElementById("closeModalBtn").addEventListener("click", () => this.closeModal());
+        document.getElementById("schoolForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const v = (fieldId) => document.getElementById(fieldId).value.trim();
+          s.university = v("f_u");
+          s.faculty = v("f_f");
+          s.examType = v("f_e");
+          s.priority = document.getElementById("f_p").value;
+          s.dates = {
+            appStart: v("f_as"),
+            appEnd: v("f_ae"),
+            appEndType: document.getElementById("f_aet").value,
+            feeDeadline: v("f_fee"),
+            examDate: v("f_ex"),
+            resultDate: v("f_rs"),
+            enrollmentDeadline: v("f_en")
+          };
+          s.links = {
+            guidelineUrl: v("f_gu"),
+            applicationUrl: v("f_au"),
+            scheduleUrl: v("f_su"),
+            lastChecked: v("f_lc")
+          };
+          if (!isEdit) this.state.data.schools.push(s);
+          StorageRepository.saveData(this.state.data);
+          this.closeModal();
+          this.render();
+        });
+      },
+      closeModal() {
+        document.getElementById("modalBackdrop").classList.remove("open");
+        document.getElementById("modalContent").innerHTML = "";
+      },
+      bindEvents() {
+        const main = document.getElementById("appMain");
+        main.querySelectorAll("[data-open]").forEach((el) => {
+          el.addEventListener("click", () => this.openDetailModal(el.dataset.open));
+        });
+        main.querySelectorAll("[data-edit]").forEach((el) => {
+          el.addEventListener("click", () => this.openFormModal(el.dataset.edit));
+        });
+        const addBtn = document.getElementById("addSchoolBtn");
+        if (addBtn) addBtn.addEventListener("click", () => this.openFormModal());
+        main.querySelectorAll("[data-cal-mode]").forEach((el) => {
+          el.addEventListener("click", () => {
+            this.state.calendarMode = el.dataset.calMode;
+            this.render();
+          });
+        });
+        const prev = document.getElementById("prevMonthBtn");
+        const next = document.getElementById("nextMonthBtn");
+        if (prev) prev.addEventListener("click", () => {
+          const c = this.state.calendarMonth;
+          this.state.calendarMonth = new Date(c.getFullYear(), c.getMonth() - 1, 1);
+          this.render();
+        });
+        if (next) next.addEventListener("click", () => {
+          const c = this.state.calendarMonth;
+          this.state.calendarMonth = new Date(c.getFullYear(), c.getMonth() + 1, 1);
+          this.render();
+        });
+        main.querySelectorAll("[data-day]").forEach((el) => {
+          el.addEventListener("click", () => this.openDayModal(el.dataset.day));
+        });
+        const todayBtn = document.getElementById("todayMonthBtn");
+        if (todayBtn) todayBtn.addEventListener("click", () => {
+          const n = new Date();
+          this.state.calendarMonth = new Date(n.getFullYear(), n.getMonth(), 1);
+          this.render();
+        });
+        const swipe = document.getElementById("calSwipe");
+        if (swipe) {
+          let startX = null;
+          swipe.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
+          swipe.addEventListener("touchend", (e) => {
+            if (startX === null) return;
+            const dx = e.changedTouches[0].clientX - startX;
+            startX = null;
+            if (Math.abs(dx) > 60) this.shiftMonth(dx < 0 ? 1 : -1);
+          });
+        }
+        const fontBtn = document.getElementById("settingsFontBtn");
+        if (fontBtn) fontBtn.addEventListener("click", () => {
+          this.state.prefs.largeText = !this.state.prefs.largeText;
+          StorageRepository.savePrefs(this.state.prefs);
+          this.applyFont();
+          this.render();
+        });
+        const exportBtn = document.getElementById("exportJsonBtn");
+        if (exportBtn) exportBtn.addEventListener("click", () => {
+          const blob = new Blob([JSON.stringify(this.state.data, null, 2)], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "momo-exam-data.json";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        });
+        const importInput = document.getElementById("importJsonInput");
+        if (importInput) importInput.addEventListener("change", () => {
+          const file = importInput.files && importInput.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const parsed = JSON.parse(reader.result);
+              if (!parsed || !Array.isArray(parsed.schools)) throw new Error("形式が違います");
+              if (!confirm("今のデータを、読み込んだデータで置き換えます。よろしいですか？")) return;
+              this.state.data = parsed;
+              StorageRepository.saveData(this.state.data);
+              this.render();
+              alert("読み込みました。");
+            } catch (err) {
+              alert("このファイルは読み込めませんでした。書き出したJSONファイルを選んでください。");
+            }
+          };
+          reader.readAsText(file);
+        });
+      }
+    };
+
+    App.init();
+  </script>
+</body>
+</html>
