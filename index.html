@@ -198,9 +198,9 @@
 
   <script>
     const INITIAL_MOMO_DATA = {
-      version: "1.1",
+      version: "1.2",
       targetYear: "2027年度入試",
-      updatedAt: "2026-11-24T17:25:00.000Z",
+      updatedAt: "2026-11-24T09:02:00.000Z",
       schools: [
         {
           id: "rikkyo_econ_2027",
@@ -217,58 +217,11 @@
             lastChecked: "2026-11-24"
           },
           tasks: [
-            { id: "t_rikkyo_1", title: "経済学部・観光学部のどちらを受けるか（日を分けて両方受けるか）を決める。試験日は2/6・8・9・12・13から選べる（要項で確認）", done: false },
+            { id: "t_rikkyo_1", title: "受ける試験日を要項で最終確認する（現在は2/12で登録中）", done: false },
             { id: "t_rikkyo_2", title: "高校へ調査書の発行を依頼する", done: false },
-            { id: "t_rikkyo_3", title: "ネット出願登録・選考料＋サービス利用料（計36,100円）支払い（1/21締切）", done: false },
+            { id: "t_rikkyo_3", title: "ネット出願登録・選考料＋サービス利用料（計36,100円）支払い（1/21締切）※金額は未確認", done: false },
             { id: "t_rikkyo_4", title: "必要書類を郵送する（1/21締切）", done: false },
-            { id: "t_rikkyo_5", title: "合格後：入学手続納入（787,250円・3/1締切／分納申請なら入学金20万円）", done: false }
-          ]
-        },
-        {
-          id: "rikkyo_tourism_2027",
-          note: "日程は、ベネッセの2027年度入試情報と一致しました。試験日は2/6・8・9・12・13の中から選ぶ形のため、受ける日は要項で確認してください。",
-          university: "立教大学",
-          faculty: "観光学部（本命・経済と選択）",
-          examType: "一般選抜",
-          priority: "検討中",
-          dates: { appStart: "2027-01-06", appEnd: "2027-01-21", appEndType: "消印有効", feeDeadline: "2027-01-21", examDate: "2027-02-12", resultDate: "2027-02-20", enrollmentDeadline: "2027-03-01" },
-          links: {
-            guidelineUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/mknpps0000010kwl-att/mknpps000005bupg.pdf",
-            applicationUrl: "https://www.rikkyo.ac.jp/admissions/faq/admissions01.html",
-            scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/gokaku-happyo/",
-            lastChecked: "2026-11-24"
-          },
-          tasks: [
-            { id: "t_rikkyo_t1", title: "※経済学部と同じ2/12にしているため重複表示。日を分ければ両方受けられる可能性あり（要項で確認）。不要なら削除", done: false }
-          ]
-        },
-        {
-          id: "hosei_mgmt1_2027",
-          note: "日程は、ベネッセの2027年度入試情報と一致しました。",
-          university: "法政大学",
-          faculty: "経営学部 経営学科",
-          examType: "一般選抜（A方式Ⅰ）",
-          priority: "併願",
-          dates: { appStart: "2027-01-07", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-07", resultDate: "2027-02-18", enrollmentDeadline: "2027-02-24" },
-          links: { guidelineUrl: "https://nyushi.hosei.ac.jp/nyushi/seido/a/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3311/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
-          tasks: [
-            { id: "t_hosei1_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
-            { id: "t_hosei1_2", title: "調査書・出願書類の郵送（1/25締切）", done: false },
-            { id: "t_hosei1_3", title: "【立教・明治不合格時のみ】2/24までに入学金240,000円でキープ検討", done: false }
-          ]
-        },
-        {
-          id: "hosei_mgmt2_2027",
-          note: "日程は、ベネッセの2027年度入試情報と一致しました。",
-          university: "法政大学",
-          faculty: "経営学部 経営戦略学科",
-          examType: "一般選抜（A方式Ⅱ）",
-          priority: "併願",
-          dates: { appStart: "2027-01-07", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-08", resultDate: "2027-02-18", enrollmentDeadline: "2027-02-24" },
-          links: { guidelineUrl: "https://nyushi.hosei.ac.jp/nyushi/seido/a/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3311/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
-          tasks: [
-            { id: "t_hosei2_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
-            { id: "t_hosei2_2", title: "調査書・出願書類の郵送（1/25締切）", done: false }
+            { id: "t_rikkyo_5", title: "合格後：入学手続納入（787,250円・3/1締切／分納申請なら入学金20万円）※金額は未確認", done: false }
           ]
         },
         {
@@ -287,7 +240,7 @@
         },
         {
           id: "toyo_econ_2027",
-          note: "出願・発表・手続の日は、河合塾の2027年度情報と一致しました。前期の試験日は2/8〜2/11のどれかで、2/10は要確認です。",
+          note: "出願・発表・手続の日は、河合塾の2027年度情報と一致しました。試験日は2/10で登録済み（最終確認は要項・受験票で）。",
           university: "東洋大学",
           faculty: "経済学部 経済学科",
           examType: "一般選抜（前期）",
@@ -297,7 +250,7 @@
           tasks: [
             { id: "t_toyo_1", title: "ネット出願・受験料35,000円支払い（1/28締切）", done: false },
             { id: "t_toyo_2", title: "調査書・出願書類の郵送（1/28締切）", done: false },
-            { id: "t_toyo_3", title: "【立教・明治不合格時のみ】2/26までに入学金250,000円でキープ検討", done: false }
+            { id: "t_toyo_3", title: "【立教・明治不合格時のみ】2/26までに入学金250,000円でキープ検討※金額は未確認", done: false }
           ]
         },
         {
@@ -312,7 +265,7 @@
           tasks: [
             { id: "t_meiji_1", title: "ネット出願・受験料35,000円支払い（1/21締切）", done: false },
             { id: "t_meiji_2", title: "調査書・出願書類の郵送（1/21締切）", done: false },
-            { id: "t_meiji_3", title: "【合格時・立教結果待ち】3/4までに入学金200,000円のみで延納手続き可能（第二次締切3/25）", done: false }
+            { id: "t_meiji_3", title: "【合格時・立教結果待ち】3/4までに入学金200,000円のみで延納手続き可能（第二次締切3/25）※金額は未確認", done: false }
           ]
         },
         {
@@ -325,10 +278,9 @@
           dates: { appStart: "2027-01-06", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-15", resultDate: "2027-02-25", enrollmentDeadline: "2027-03-04" },
           links: { guidelineUrl: "https://www.chuo-u.ac.jp/connect/admission/modification/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3275/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
           tasks: [
-            { id: "t_chuo_0", title: "学部別Ⅰ（2/14）とⅡ（2/15）のどちらを受けるか決める（2出願目以降の検定料は15,000円）", done: false },
             { id: "t_chuo_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
             { id: "t_chuo_2", title: "調査書・出願書類の郵送（1/25締切）", done: false },
-            { id: "t_chuo_3", title: "進学時：3/4までに入学手続金815,350円納入", done: false }
+            { id: "t_chuo_3", title: "進学時：3/4までに入学手続金815,350円納入※金額は未確認", done: false }
           ]
         },
         {
@@ -343,7 +295,7 @@
           tasks: [
             { id: "t_aoyama_1", title: "ネット出願・受験料35,000円支払い（1/20締切・全校で最初）", done: false },
             { id: "t_aoyama_2", title: "調査書・出願書類の郵送（1/20締切）", done: false },
-            { id: "t_aoyama_3", title: "進学時：3/5までに入学手続金714,100円納入", done: false }
+            { id: "t_aoyama_3", title: "進学時：3/5までに入学手続金714,100円納入※金額は未確認", done: false }
           ]
         }
       ]
