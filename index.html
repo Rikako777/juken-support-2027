@@ -198,9 +198,9 @@
 
   <script>
     const INITIAL_MOMO_DATA = {
-      version: "1.3",
+      version: "1.4",
       targetYear: "2027年度入試",
-      updatedAt: "2026-11-24T09:05:00.000Z",
+      updatedAt: "2026-11-24T09:08:00.000Z",
       schools: [
         {
           id: "rikkyo_econ_2027",
@@ -211,8 +211,8 @@
           priority: "第一志望",
           dates: { appStart: "2027-01-06", appEnd: "2027-01-21", appEndType: "消印有効", feeDeadline: "2027-01-21", examDate: "2027-02-12", resultDate: "2027-02-20", enrollmentDeadline: "2027-03-01" },
           links: {
-            guidelineUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/mknpps0000010kwl-att/mknpps000005bupg.pdf",
-            applicationUrl: "https://www.rikkyo.ac.jp/admissions/faq/admissions01.html",
+            guidelineUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html",
+            applicationUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html",
             scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/gokaku-happyo/",
             lastChecked: "2026-11-24"
           },
@@ -276,7 +276,7 @@
           examType: "一般選抜（学部別Ⅱ）",
           priority: "併願",
           dates: { appStart: "2027-01-06", appEnd: "2027-01-25", appEndType: "消印有効", feeDeadline: "2027-01-25", examDate: "2027-02-15", resultDate: "2027-02-25", enrollmentDeadline: "2027-03-04" },
-          links: { guidelineUrl: "https://www.chuo-u.ac.jp/connect/admission/modification/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3275/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
+          links: { guidelineUrl: "https://www.chuo-u.ac.jp/connect/admission/exam/guide/", applicationUrl: "", scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3275/nyushi/gokaku-happyo/", lastChecked: "2026-11-24" },
           tasks: [
             { id: "t_chuo_1", title: "ネット出願・受験料35,000円支払い（1/25締切）", done: false },
             { id: "t_chuo_2", title: "調査書・出願書類の郵送（1/25締切）", done: false },
@@ -477,7 +477,7 @@
           </div>`;
 
         return `
-          <div class="card" style="background:#fffbeb; border-color:#fcd34d;">📝 <strong>日程は、2026年11月24日にベネッセ・河合塾の入試情報と突き合わせました。金額は大学公表値をもとにした学費表（2026年10月13日調査）と一致しています。</strong><br>最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
+          <div class="card" style="background:#fffbeb; border-color:#fcd34d;">📝 <strong>日程は、2026年11月24日にベネッセ・河合塾の入試情報と突き合わせました。</strong><br>最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
 
           ${conflicts.length ? `<div class="conflict-banner">⚠️ 試験日重複の注意：<br>${conflicts.map(c => `・${ExamLogic.formatDateJa(c.date)}：${c.schools.map(s => `${this.esc(s.university)}（${this.esc(s.faculty)}）`).join(" と ")}`).join("<br>")}</div>` : ""}
 
