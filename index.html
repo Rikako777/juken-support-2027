@@ -484,7 +484,7 @@
           </div>`;
 
         return `
-          <div class="card" style="background:#fffaf0; border-color:#f0dc9f;">📝 <strong>日程は、2026年11月24日にベネッセ・河合塾の入試情報と突き合わせました。</strong><br>最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
+          <div class="card" style="background:#fffaf0; border-color:#f0dc9f;">📝 最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
 
           ${conflicts.length ? `<div class="conflict-banner">⚠️ 試験日重複の注意：<br>${conflicts.map(c => `・${ExamLogic.formatDateJa(c.date)}：${c.schools.map(s => `${this.esc(s.university)}（${this.esc(s.faculty)}）`).join(" と ")}`).join("<br>")}</div>` : ""}
 
