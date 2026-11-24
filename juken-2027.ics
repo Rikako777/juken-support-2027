@@ -1,0 +1,261 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//juken-support-2027//JA
+CALSCALE:GREGORIAN
+X-WR-CALNAME:ももちゃん受験2027
+X-WR-TIMEZONE:Asia/Tokyo
+BEGIN:VEVENT
+UID:rikkyo_econ_2027-appStart@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270106
+DTEND;VALUE=DATE:20270107
+SUMMARY:立教 経済学部 出願開始
+DESCRIPTION:立教大学 経済学部（本命）（一般選抜）\n募集要項：https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:rikkyo_econ_2027-appEnd@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270121
+DTEND;VALUE=DATE:20270122
+SUMMARY:立教 経済学部 出願締切・受験料の期限
+DESCRIPTION:立教大学 経済学部（本命）（一般選抜）\n募集要項：https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:rikkyo_econ_2027-examDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270212
+DTEND;VALUE=DATE:20270213
+SUMMARY:立教 経済学部 試験日
+DESCRIPTION:立教大学 経済学部（本命）（一般選抜）\n募集要項：https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:rikkyo_econ_2027-resultDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270220
+DTEND;VALUE=DATE:20270221
+SUMMARY:立教 経済学部 合格発表
+DESCRIPTION:立教大学 経済学部（本命）（一般選抜）\n募集要項：https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:rikkyo_econ_2027-enrollmentDeadline@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270302
+SUMMARY:立教 経済学部 入学手続き締切
+DESCRIPTION:立教大学 経済学部（本命）（一般選抜）\n募集要項：https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:hosei_econ_2027-appStart@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270107
+DTEND;VALUE=DATE:20270108
+SUMMARY:法政 経済学部 現代ビジネス学科 出願開始
+DESCRIPTION:法政大学 経済学部 現代ビジネス学科（一般選抜（A方式Ⅰ））\n募集要項：https://nyushi.hosei.ac.jp/nyushi/seido/a/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:hosei_econ_2027-appEnd@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270125
+DTEND;VALUE=DATE:20270126
+SUMMARY:法政 経済学部 現代ビジネス学科 出願締切・受験料の期限
+DESCRIPTION:法政大学 経済学部 現代ビジネス学科（一般選抜（A方式Ⅰ））\n募集要項：https://nyushi.hosei.ac.jp/nyushi/seido/a/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:hosei_econ_2027-examDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270209
+DTEND;VALUE=DATE:20270210
+SUMMARY:法政 経済学部 現代ビジネス学科 試験日
+DESCRIPTION:法政大学 経済学部 現代ビジネス学科（一般選抜（A方式Ⅰ））\n募集要項：https://nyushi.hosei.ac.jp/nyushi/seido/a/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:hosei_econ_2027-resultDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270219
+DTEND;VALUE=DATE:20270220
+SUMMARY:法政 経済学部 現代ビジネス学科 合格発表
+DESCRIPTION:法政大学 経済学部 現代ビジネス学科（一般選抜（A方式Ⅰ））\n募集要項：https://nyushi.hosei.ac.jp/nyushi/seido/a/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:hosei_econ_2027-enrollmentDeadline@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270225
+DTEND;VALUE=DATE:20270226
+SUMMARY:法政 経済学部 現代ビジネス学科 入学手続き締切
+DESCRIPTION:法政大学 経済学部 現代ビジネス学科（一般選抜（A方式Ⅰ））\n募集要項：https://nyushi.hosei.ac.jp/nyushi/seido/a/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:toyo_econ_2027-appStart@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270104
+DTEND;VALUE=DATE:20270105
+SUMMARY:東洋 経済学部 経済学科 出願開始
+DESCRIPTION:東洋大学 経済学部 経済学科（一般選抜（前期））\n募集要項：https://www.toyo.ac.jp/nyushi/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:toyo_econ_2027-appEnd@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270128
+DTEND;VALUE=DATE:20270129
+SUMMARY:東洋 経済学部 経済学科 出願締切・受験料の期限
+DESCRIPTION:東洋大学 経済学部 経済学科（一般選抜（前期））\n募集要項：https://www.toyo.ac.jp/nyushi/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:toyo_econ_2027-examDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270210
+DTEND;VALUE=DATE:20270211
+SUMMARY:東洋 経済学部 経済学科 試験日
+DESCRIPTION:東洋大学 経済学部 経済学科（一般選抜（前期））\n募集要項：https://www.toyo.ac.jp/nyushi/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:toyo_econ_2027-resultDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270220
+DTEND;VALUE=DATE:20270221
+SUMMARY:東洋 経済学部 経済学科 合格発表
+DESCRIPTION:東洋大学 経済学部 経済学科（一般選抜（前期））\n募集要項：https://www.toyo.ac.jp/nyushi/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:toyo_econ_2027-enrollmentDeadline@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270226
+DTEND;VALUE=DATE:20270227
+SUMMARY:東洋 経済学部 経済学科 入学手続き締切
+DESCRIPTION:東洋大学 経済学部 経済学科（一般選抜（前期））\n募集要項：https://www.toyo.ac.jp/nyushi/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:meiji_pol_2027-appStart@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270107
+DTEND;VALUE=DATE:20270108
+SUMMARY:明治 政治経済学部 出願開始
+DESCRIPTION:明治大学 政治経済学部（一般選抜（学部別））\n募集要項：https://www.meiji.ac.jp/koho/guidebook/univ/guide2027_11admission.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:meiji_pol_2027-appEnd@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270121
+DTEND;VALUE=DATE:20270122
+SUMMARY:明治 政治経済学部 出願締切・受験料の期限
+DESCRIPTION:明治大学 政治経済学部（一般選抜（学部別））\n募集要項：https://www.meiji.ac.jp/koho/guidebook/univ/guide2027_11admission.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:meiji_pol_2027-examDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270211
+DTEND;VALUE=DATE:20270212
+SUMMARY:明治 政治経済学部 試験日
+DESCRIPTION:明治大学 政治経済学部（一般選抜（学部別））\n募集要項：https://www.meiji.ac.jp/koho/guidebook/univ/guide2027_11admission.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:meiji_pol_2027-resultDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270218
+DTEND;VALUE=DATE:20270219
+SUMMARY:明治 政治経済学部 合格発表
+DESCRIPTION:明治大学 政治経済学部（一般選抜（学部別））\n募集要項：https://www.meiji.ac.jp/koho/guidebook/univ/guide2027_11admission.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:meiji_pol_2027-enrollmentDeadline@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270304
+DTEND;VALUE=DATE:20270305
+SUMMARY:明治 政治経済学部 入学手続き締切
+DESCRIPTION:明治大学 政治経済学部（一般選抜（学部別））\n募集要項：https://www.meiji.ac.jp/koho/guidebook/univ/guide2027_11admission.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:chuo_econ_2027-appStart@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270106
+DTEND;VALUE=DATE:20270107
+SUMMARY:中央 経済学部 出願開始
+DESCRIPTION:中央大学 経済学部（一般選抜（学部別Ⅱ））\n募集要項：https://www.chuo-u.ac.jp/connect/admission/exam/guide/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:chuo_econ_2027-appEnd@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270125
+DTEND;VALUE=DATE:20270126
+SUMMARY:中央 経済学部 出願締切・受験料の期限
+DESCRIPTION:中央大学 経済学部（一般選抜（学部別Ⅱ））\n募集要項：https://www.chuo-u.ac.jp/connect/admission/exam/guide/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:chuo_econ_2027-examDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270216
+SUMMARY:中央 経済学部 試験日
+DESCRIPTION:中央大学 経済学部（一般選抜（学部別Ⅱ））\n募集要項：https://www.chuo-u.ac.jp/connect/admission/exam/guide/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:chuo_econ_2027-resultDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270225
+DTEND;VALUE=DATE:20270226
+SUMMARY:中央 経済学部 合格発表
+DESCRIPTION:中央大学 経済学部（一般選抜（学部別Ⅱ））\n募集要項：https://www.chuo-u.ac.jp/connect/admission/exam/guide/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:chuo_econ_2027-enrollmentDeadline@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270304
+DTEND;VALUE=DATE:20270305
+SUMMARY:中央 経済学部 入学手続き締切
+DESCRIPTION:中央大学 経済学部（一般選抜（学部別Ⅱ））\n募集要項：https://www.chuo-u.ac.jp/connect/admission/exam/guide/\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:aoyama_econ_2027-appStart@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270106
+DTEND;VALUE=DATE:20270107
+SUMMARY:青学 経済学部 出願開始
+DESCRIPTION:青山学院大学 経済学部（一般選抜（個別学部日程））\n募集要項：https://www.aoyama.ac.jp/wp-content/uploads/2026/05/ad_exam2027_p149_20260507_k3w1A.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:aoyama_econ_2027-appEnd@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:青学 経済学部 出願締切・受験料の期限
+DESCRIPTION:青山学院大学 経済学部（一般選抜（個別学部日程））\n募集要項：https://www.aoyama.ac.jp/wp-content/uploads/2026/05/ad_exam2027_p149_20260507_k3w1A.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:aoyama_econ_2027-examDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270219
+DTEND;VALUE=DATE:20270220
+SUMMARY:青学 経済学部 試験日
+DESCRIPTION:青山学院大学 経済学部（一般選抜（個別学部日程））\n募集要項：https://www.aoyama.ac.jp/wp-content/uploads/2026/05/ad_exam2027_p149_20260507_k3w1A.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:aoyama_econ_2027-resultDate@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270227
+DTEND;VALUE=DATE:20270228
+SUMMARY:青学 経済学部 合格発表
+DESCRIPTION:青山学院大学 経済学部（一般選抜（個別学部日程））\n募集要項：https://www.aoyama.ac.jp/wp-content/uploads/2026/05/ad_exam2027_p149_20260507_k3w1A.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:aoyama_econ_2027-enrollmentDeadline@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270305
+DTEND;VALUE=DATE:20270306
+SUMMARY:青学 経済学部 入学手続き締切
+DESCRIPTION:青山学院大学 経済学部（一般選抜（個別学部日程））\n募集要項：https://www.aoyama.ac.jp/wp-content/uploads/2026/05/ad_exam2027_p149_20260507_k3w1A.pdf\n※最終的には公式の募集要項で確認
+END:VEVENT
+BEGIN:VEVENT
+UID:kyotsu1@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270116
+DTEND;VALUE=DATE:20270117
+SUMMARY:共通テスト（1日目）
+END:VEVENT
+BEGIN:VEVENT
+UID:kyotsu2@juken-support-2027
+DTSTAMP:20261124T100000Z
+DTSTART;VALUE=DATE:20270117
+DTEND;VALUE=DATE:20270118
+SUMMARY:共通テスト（2日目）
+END:VEVENT
+END:VCALENDAR
