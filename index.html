@@ -474,7 +474,7 @@
           </div>`;
 
         const ttUrl = (localStorage.getItem("momo_timetree_url") || "").trim();
-        const ttBtn = `<a href="${this.esc(ttUrl || "https://timetreeapp.com/")}" target="_blank" rel="noopener noreferrer" class="link-btn" style="display:block; text-align:center; margin-bottom:12px; background:#e6f4ea; color:#1d6b4f; border:1px solid #b7dfc3;">🌳 TimeTreeのカレンダーを開く</a>`;
+        const ttBtn = `<a href="${this.esc(ttUrl || "https://timetreeapp.com/calendars/Dca9Fr9bDGUr")}" target="_blank" rel="noopener noreferrer" class="link-btn" style="display:block; text-align:center; margin-bottom:12px; background:#e6f4ea; color:#1d6b4f; border:1px solid #b7dfc3;">🌳 TimeTreeのカレンダーを開く</a>`;
         return `
           ${ttBtn}
           <div class="card" style="background:#fffaf0; border-color:#f0dc9f;">📝 最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
@@ -639,7 +639,7 @@
           <div class="card">
             <h3 style="margin-top:0;">🌳 TimeTreeのリンク</h3>
             <div class="helper-text" style="margin:0 0 8px;">TimeTreeのカレンダーのURLを貼ると、トップのボタンから開けます。この端末だけに保存されます。</div>
-            <input type="url" id="timetreeUrlInput" class="form-control" placeholder="https://timetreeapp.com/..." value="${this.esc(localStorage.getItem("momo_timetree_url") || "")}" />
+            <input type="url" id="timetreeUrlInput" class="form-control" placeholder="https://timetreeapp.com/calendars/Dca9Fr9bDGUr" value="${this.esc(localStorage.getItem("momo_timetree_url") || "")}" />
             <button type="button" class="btn btn-primary btn-block" id="saveTimetreeBtn" style="margin-top:8px;">💾 保存する</button>
           </div>
           <div class="card">
