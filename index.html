@@ -25,9 +25,6 @@
       --shadow: 0 1px 2px rgba(30, 31, 33, 0.05);
     }
 
-    body.large-text-mode {
-      --base-font-size: 22.5px;
-    }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html { font-size: var(--base-font-size); }
@@ -184,7 +181,6 @@
       <div>
         <h1 class="header-title">🎓 2027年度 大学受験サポート</h1>
       </div>
-      <button type="button" class="font-toggle-btn" id="fontToggleBtn">文字サイズ：標準</button>
     </div>
   </header>
 
@@ -308,7 +304,6 @@
 
     const StorageRepository = {
       STORAGE_KEY: "momo_exam_support_2027_v2",
-      PREF_KEY: "momo_exam_support_2027_prefs",
       loadData() {
         try {
           const raw = localStorage.getItem(this.STORAGE_KEY);
@@ -324,12 +319,6 @@
       saveData(data) {
         data.updatedAt = new Date().toISOString();
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
-      },
-      loadPrefs() {
-        try { return JSON.parse(localStorage.getItem(this.PREF_KEY)) || { largeText: false }; } catch { return { largeText: false }; }
-      },
-      savePrefs(prefs) {
-        localStorage.setItem(this.PREF_KEY, JSON.stringify(prefs));
       }
     };
 
@@ -391,7 +380,6 @@
     const App = {
       state: {
         data: StorageRepository.loadData(),
-        prefs: StorageRepository.loadPrefs(),
         activeTab: "top",
         calendarMode: "month",
         calendarMonth: new Date()
@@ -409,12 +397,6 @@
       },
       init() {
         this.state.calendarMonth = this.initialMonth();
-        this.applyFont();
-        document.getElementById("fontToggleBtn").addEventListener("click", () => {
-          this.state.prefs.largeText = !this.state.prefs.largeText;
-          StorageRepository.savePrefs(this.state.prefs);
-          this.applyFont();
-        });
         document.querySelectorAll(".nav-item").forEach((btn) => {
           btn.addEventListener("click", () => {
             this.state.activeTab = btn.dataset.tab;
@@ -426,10 +408,6 @@
           if (e.target.id === "modalBackdrop") this.closeModal();
         });
         this.render();
-      },
-      applyFont() {
-        document.body.classList.toggle("large-text-mode", this.state.prefs.largeText);
-        document.getElementById("fontToggleBtn").textContent = this.state.prefs.largeText ? "文字サイズ：特大" : "文字サイズ：標準";
       },
       esc(s) {
         return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -613,10 +591,6 @@
       renderSettings() {
         return `
           <h2 class="section-title">⚙️ 設定・データの保存</h2>
-          <div class="card">
-            <h3 style="margin-top:0;">👀 文字サイズの切り替え（おばあちゃん向け）</h3>
-            <button type="button" class="btn btn-outline btn-block" id="settingsFontBtn">文字サイズを切り替える（現在：${this.state.prefs.largeText ? "特大" : "標準"}）</button>
-          </div>
           <div class="card">
             <h3 style="margin-top:0;">📤 JSONで書き出し・読み込み</h3>
             <button type="button" class="btn btn-primary btn-block" id="exportJsonBtn" style="margin-bottom:12px;">💾 データをJSONで書き出す</button>
@@ -867,13 +841,6 @@
             if (Math.abs(dx) > 60) this.shiftMonth(dx < 0 ? 1 : -1);
           });
         }
-        const fontBtn = document.getElementById("settingsFontBtn");
-        if (fontBtn) fontBtn.addEventListener("click", () => {
-          this.state.prefs.largeText = !this.state.prefs.largeText;
-          StorageRepository.savePrefs(this.state.prefs);
-          this.applyFont();
-          this.render();
-        });
         const exportBtn = document.getElementById("exportJsonBtn");
         if (exportBtn) exportBtn.addEventListener("click", () => {
           const blob = new Blob([JSON.stringify(this.state.data, null, 2)], { type: "application/json" });
