@@ -194,7 +194,6 @@
     <button type="button" class="nav-item active" data-tab="top"><span class="nav-icon">⏰</span><span>トップ</span></button>
     <button type="button" class="nav-item" data-tab="calendar"><span class="nav-icon">📅</span><span>カレンダー</span></button>
     <button type="button" class="nav-item" data-tab="schools"><span class="nav-icon">🏫</span><span>志望校・手続き</span></button>
-    <button type="button" class="nav-item" data-tab="notifications"><span class="nav-icon">✉️</span><span>通知予定</span></button>
     <button type="button" class="nav-item" data-tab="settings"><span class="nav-icon">⚙️</span><span>設定・保存</span></button>
   </nav>
 
@@ -386,25 +385,6 @@
           byDate[d].push(s);
         });
         return Object.entries(byDate).filter(([, list]) => list.length >= 2).map(([date, list]) => ({ date, schools: list })).sort((a, b) => a.date.localeCompare(b.date));
-      },
-      generateNotificationPreviews(schools) {
-        const timings = [{ offsetDays: -7, label: "7日前" }, { offsetDays: -3, label: "3日前" }, { offsetDays: -1, label: "前日" }, { offsetDays: 0, label: "当日朝" }];
-        const targetKeys = ["appEnd", "feeDeadline", "enrollmentDeadline"];
-        const list = [];
-        schools.forEach((school) => {
-          targetKeys.forEach((key) => {
-            const deadlineStr = school.dates?.[key];
-            const deadlineDate = this.parseLocalDate(deadlineStr);
-            if (!deadlineDate) return;
-            if (key === "feeDeadline" && deadlineStr === school.dates?.appEnd) return;
-            const meta = this.EVENT_META[key];
-            const methodNote = ((key === "appEnd" && school.dates.appEndType) ? `（${school.dates.appEndType}）` : "") + ((key === "appEnd" && school.dates.feeDeadline === school.dates.appEnd) ? "\n■ 受験料の振込期限：同じ日です" : ""); timings.forEach((t) => { const sendObj = new Date(deadlineDate.getFullYear(), deadlineDate.getMonth(), deadlineDate.getDate() + t.offsetDays); const sendDate = `${sendObj.getFullYear()}-${String(sendObj.getMonth() + 1).padStart(2, "0")}-${String(sendObj.getDate()).padStart(2, "0")}`;
-              const remText = t.offsetDays === 0 ? "本日が締切です" : `まであと${Math.abs(t.offsetDays)}日`; list.push({ sendDate, timingLabel: t.label, school, typeLabel: meta.label, subject: `【${school.university} ${school.faculty}】${meta.label}${remText}`, body: `ももちゃん・お母様・おばあ様へ\n\n「${school.university} ${school.faculty}（${school.examType}）」の${meta.label}${remText}。\n\n■ 締切日：${this.formatDateJa(deadlineStr)}${methodNote}\n■ 募集要項リンク：${school.links?.guidelineUrl || "（未登録）"}\n■ 出願サイトリンク：${school.links?.applicationUrl || "（未登録）"}`
-              });
-            });
-          });
-        });
-        return list.sort((a, b) => a.sendDate.localeCompare(b.sendDate));
       }
     };
 
@@ -460,7 +440,6 @@
         if (this.state.activeTab === "top") main.innerHTML = this.renderTop();
         else if (this.state.activeTab === "calendar") main.innerHTML = this.renderCalendar();
         else if (this.state.activeTab === "schools") main.innerHTML = this.renderSchools();
-        else if (this.state.activeTab === "notifications") main.innerHTML = this.renderNotifications();
         else main.innerHTML = this.renderSettings();
         this.bindEvents();
       },
@@ -630,25 +609,6 @@
                 </div>
               </div>`;
           }).join("")}`;
-      },
-      renderNotifications() {
-        const now = new Date();
-        const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-        const previews = ExamLogic.generateNotificationPreviews(this.state.data.schools).filter((p) => p.sendDate >= todayStr);
-        return `
-          <h2 class="section-title">✉️ 通知メール予定一覧（プレビュー）</h2>
-          <p class="helper-text" style="margin:-4px 0 12px;">今日以降に送る予定のものだけを表示しています。実際のメール送信は、まだ設定していません。</p>
-          ${previews.map(p => `
-            <div class="card">
-              <div>
-                <span class="badge badge-priority-2">予定日：${ExamLogic.formatDateJa(p.sendDate)}</span>
-                <span class="badge badge-priority-1">${this.esc(p.timingLabel)}</span>
-              </div>
-              <div class="mail-preview">
-                <div class="mail-subject">件名：${this.esc(p.subject)}</div>
-                <pre class="mail-body">${this.esc(p.body)}</pre>
-              </div>
-            </div>`).join("")}`;
       },
       renderSettings() {
         return `
