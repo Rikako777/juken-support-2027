@@ -473,7 +473,10 @@
             <div style="font-size:0.95rem;">日付：<strong>${ExamLogic.formatDateJa(ev.date)}</strong></div>
           </div>`;
 
+        const ttUrl = (localStorage.getItem("momo_timetree_url") || "").trim();
+        const ttBtn = `<a href="${this.esc(ttUrl || "https://timetreeapp.com/")}" target="_blank" rel="noopener noreferrer" class="link-btn" style="display:block; text-align:center; margin-bottom:12px; background:#e6f4ea; color:#1d6b4f; border:1px solid #b7dfc3;">🌳 TimeTreeのカレンダーを開く</a>`;
         return `
+          ${ttBtn}
           <div class="card" style="background:#fffaf0; border-color:#f0dc9f;">📝 最終的には、各大学の公式の募集要項で確認してください。違うところは「編集」で直せます。</div>
 
           ${conflicts.length ? `<div class="conflict-banner">⚠️ 試験日重複の注意：<br>${conflicts.map(c => `・${ExamLogic.formatDateJa(c.date)}：${c.schools.map(s => `${this.esc(s.university)}（${this.esc(s.faculty)}）`).join(" と ")}`).join("<br>")}</div>` : ""}
@@ -633,6 +636,12 @@
       renderSettings() {
         return `
           <h2 class="section-title">⚙️ 設定・データの保存</h2>
+          <div class="card">
+            <h3 style="margin-top:0;">🌳 TimeTreeのリンク</h3>
+            <div class="helper-text" style="margin:0 0 8px;">TimeTreeのカレンダーのURLを貼ると、トップのボタンから開けます。この端末だけに保存されます。</div>
+            <input type="url" id="timetreeUrlInput" class="form-control" placeholder="https://timetreeapp.com/..." value="${this.esc(localStorage.getItem("momo_timetree_url") || "")}" />
+            <button type="button" class="btn btn-primary btn-block" id="saveTimetreeBtn" style="margin-top:8px;">💾 保存する</button>
+          </div>
           <div class="card">
             <h3 style="margin-top:0;">📤 JSONで書き出し・読み込み</h3>
             <button type="button" class="btn btn-primary btn-block" id="exportJsonBtn" style="margin-bottom:12px;">💾 データをJSONで書き出す</button>
@@ -921,6 +930,13 @@
         });
         main.querySelectorAll("[data-day]").forEach((el) => {
           el.addEventListener("click", () => this.openDayModal(el.dataset.day));
+        });
+        const ttSave = document.getElementById("saveTimetreeBtn");
+        if (ttSave) ttSave.addEventListener("click", () => {
+          const v = document.getElementById("timetreeUrlInput").value.trim();
+          if (v && !/^https?:\/\//.test(v)) { alert("https:// から始まるURLを入れてください。"); return; }
+          localStorage.setItem("momo_timetree_url", v);
+          alert("保存しました。");
         });
         const addEvBtn = document.getElementById("addEventBtn");
         if (addEvBtn) addEvBtn.addEventListener("click", () => {
