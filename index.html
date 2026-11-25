@@ -997,6 +997,7 @@
     };
 
     App.init();
+    document.addEventListener("visibilitychange", () => { if (!document.hidden && !document.getElementById("modalBackdrop").classList.contains("open")) App.render(); });
   </script>
 </body>
 </html>
