@@ -219,9 +219,9 @@
           priority: "第一志望",
           dates: { appStart: "2027-01-06", appEnd: "2027-01-21", appEndType: "消印有効", feeDeadline: "2027-01-21", examDate: "2027-02-12", resultDate: "2027-02-20", enrollmentDeadline: "2027-03-01" },
           links: {
-            guidelineUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html",
-            applicationUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html",
-            scheduleUrl: "https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/gokaku-happyo/",
+            guidelineUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/",
+            applicationUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/",
+            scheduleUrl: "https://www.rikkyo.ac.jp/admissions/undergraduate/index.html",
             lastChecked: "2026-11-24"
           },
           tasks: [
@@ -318,7 +318,14 @@
             this.saveData(INITIAL_MOMO_DATA);
             return JSON.parse(JSON.stringify(INITIAL_MOMO_DATA));
           }
-          return JSON.parse(raw);
+          const parsed = JSON.parse(raw);
+          // 古いリンクの直し（立教の募集要項ページが変わったため）
+          (parsed.schools || []).forEach((sc) => {
+            const l = sc.links || {};
+            ["guidelineUrl", "applicationUrl"].forEach((k) => { if (l[k] === "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html") l[k] = "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/"; });
+            if (l.scheduleUrl === "https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/gokaku-happyo/") l.scheduleUrl = "https://www.rikkyo.ac.jp/admissions/undergraduate/index.html";
+          });
+          return parsed;
         } catch {
           return JSON.parse(JSON.stringify(INITIAL_MOMO_DATA));
         }
