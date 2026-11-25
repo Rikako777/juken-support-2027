@@ -212,7 +212,7 @@
       schools: [
         {
           id: "rikkyo_econ_2027",
-          note: "日程は、ベネッセの2027年度入試情報と一致しました。試験日は2/6・8・9・12・13の中から選ぶ形のため、受ける日は要項で確認してください。",
+          note: "日程は、ベネッセの2027年度入試情報と一致しました。受ける試験日は2/12のみで登録しています（立教には試験日が複数あります。2/12に経済学部があるかは、出願前に要項で確認してください）。",
           university: "立教大学",
           faculty: "経済学部（本命）",
           examType: "一般選抜",
@@ -225,7 +225,7 @@
             lastChecked: "2026-11-24"
           },
           tasks: [
-            { id: "t_rikkyo_1", title: "受ける試験日を要項で最終確認する（現在は2/12で登録中）", done: false },
+            { id: "t_rikkyo_1", title: "試験日は2/12で受験する（出願前に、要項で2/12に経済学部があるか確認する）", done: false },
             { id: "t_rikkyo_2", title: "高校へ調査書の発行を依頼する", done: false },
             { id: "t_rikkyo_3", title: "ネット出願登録・選考料＋サービス利用料（計36,100円）支払い（1/21締切）", done: false },
             { id: "t_rikkyo_4", title: "必要書類を郵送する（1/21締切）", done: false },
@@ -324,6 +324,10 @@
             const l = sc.links || {};
             ["guidelineUrl", "applicationUrl"].forEach((k) => { if (l[k] === "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/index.html") l[k] = "https://www.rikkyo.ac.jp/admissions/undergraduate/generalguideline/"; });
             if (l.scheduleUrl === "https://manabi.benesse.ne.jp/daigaku/school/3322/nyushi/gokaku-happyo/") l.scheduleUrl = "https://www.rikkyo.ac.jp/admissions/undergraduate/index.html";
+            if (sc.id === "rikkyo_econ_2027") {
+              if (sc.note && sc.note.indexOf("2/6・8・9・12・13の中から選ぶ形") >= 0) sc.note = "日程は、ベネッセの2027年度入試情報と一致しました。受ける試験日は2/12のみで登録しています（立教には試験日が複数あります。2/12に経済学部があるかは、出願前に要項で確認してください）。";
+              (sc.tasks || []).forEach((t) => { if (t.title === "受ける試験日を要項で最終確認する（現在は2/12で登録中）") t.title = "試験日は2/12で受験する（出願前に、要項で2/12に経済学部があるか確認する）"; });
+            }
           });
           return parsed;
         } catch {
